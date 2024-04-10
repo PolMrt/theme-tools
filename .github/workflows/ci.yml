@@ -46,7 +46,15 @@ jobs:
         with:
           submodules: true
 
-      - name: Setup Node.js
+      - name: Setup Node.js (Windows)
+        if: ${{ matrix.os == 'windows-latest' }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: ''
+
+      - name: Setup Node.js (Linux)
+        if: ${{ matrix.os != 'windows-latest' }}
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
